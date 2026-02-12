@@ -21,38 +21,38 @@ Para esto vamos a desplegar un entorno basado en ownCloud para almacenamiento y 
 
 Siguiendo la siguiente estructura:
 
-![cap24](/img/c24.png)
+![cap24](/escenario1/img/c24.png)
 
 ## Despliegue y gestión de servicios de autenticación de usuarios con LDAP
 
 Creo el archivo `docker-compose.yml`, donde se definen todos los servicios relacionados con OpenLDAP. 
 
-![cap1](/img/c1.png)
+![cap1](/escenario1/img/c1.png)
 
 Me voy al directorio donde está docker-compose.yml y lo ejecuto
 
     $ docker-compose up -d
 
-![cap2](/img/c2.png)
+![cap2](/escenario1/img/c2.png)
 
 Compruebo que está activo
 
-![cap3](/img/c3.png)
+![cap3](/escenario1/img/c3.png)
 
 A continuación, he copiado los archivos .ldif que contienen las definiciones de usuarios, grupos y unidades organizativas dentro del contenedor LDAP. Estos archivos incluyen las entradas necesarias para configurar usuarios como "cristina", "isabel", "pedro" y "ana", además de grupos como "Editores" y "Lectores". Después de copiarlos, he usado el comando ldapadd desde dentro del contenedor para cargar esta información en el servidor LDAP.
 
-![cap4](/img/c4.png)
+![cap4](/escenario1/img/c4.png)
 
 Conecto al contenedor usando docker exec
 
-![cap5](/img/c5.png)
+![cap5](/escenario1/img/c5.png)
 
 Una vez dentro del contenedor, uso el comando ldapsearch para verificar si las entradas ya están en el servidor LDAP. Para esto uso los comandos
  
     $ ldapsearch -x -H ldap://localhost -b "uid=cristina,dc=example,dc=org" -D "cn=admin,dc=example,dc=org" -w admin
     $ ldapsearch -x -H ldap://localhost -b "uid=isabel,dc=example,dc=org" -D "cn=admin,dc=example,dc=org" -w admin 
 
-![cap6](/img/c6.png)
+![cap6](/escenario1/img/c6.png)
 
 Pruebo a tirar el contenedor y ejecutarlo de nuevo y compruebo que hay persistencia de datos, deteniendo y eliminando el contenedor, para después volver a levantarlo
 
@@ -63,7 +63,7 @@ Pruebo a tirar el contenedor y ejecutarlo de nuevo y compruebo que hay persisten
 
 Como se puede observar en la siguiente imagen, las entradas siguen presentes, lo que confirma que el sistema guarda la información en volúmenes persistentes.
 
-![cap7](/img/c7.png)
+![cap7](/escenario1/img/c7.png)
 
 ### Archivos ldif creados
 Los archivos que he creado son los siguientes:
@@ -101,7 +101,7 @@ Para copiarlos uso los comandos:
     $ docker cp ou_groups.ldif openldap-server:/tmp/ou_groups.ldif
     $ docker cp ou_people.ldif openldap-server:/tmp/ou_people.ldif
 
-![cap17](/img/c17.png)
+![cap17](/escenario1/img/c17.png)
 
 Y después los añado:
 
@@ -139,7 +139,7 @@ Después de ejecutar el comando, verifico que los cambios se hayan aplicado corr
 
     $ ldapsearch -x -H ldap://localhost -b "uid=cristina,dc=example,dc=org" -D "cn=admin,dc=example,dc=org" -w admin
 
-![cap8](/img/c8.png)
+![cap8](/escenario1/img/c8.png)
 
 ### Añadir un atributo a un usuario
 Voy a añadir una descripcion al usuario cristina
@@ -161,7 +161,7 @@ c) Verifico los cambios con ldapsearch
 
     $ ldapsearch -x -H ldap://localhost -b "uid=cristina,dc=example,dc=org" -D "cn=admin,dc=example,dc=org" -w admin
 
-![cap9](/img/c9.png)
+![cap9](/escenario1/img/c9.png)
 
 ### Eliminar un atributo de un usuario
 En mi caso no quiero eliminar ningún atributo de ningún usuario, pero si lo quisiera hacer el proceso sería similar a los anteriores pero usando en el archivo .ldif 
@@ -207,7 +207,7 @@ Voy a añadir la OU People
 
     $ ldapsearch -x -H ldap://localhost -b "ou=People,dc=example,dc=org" -D "cn=admin,dc=example,dc=org" -w admin
     
-![cap10](/img/c10.png)
+![cap10](/escenario1/img/c10.png)
 
 ### Buscar entradas en el DIT
 Para buscar entradas en el directorio LDAP, uso el comando ldapsearch. Por ejemplo:
@@ -276,7 +276,7 @@ a) Accedo a la interfaz web de ownCloud:
 
     http://localhost:20662
 
-![cap11](/img/c11.png)
+![cap11](/escenario1/img/c11.png)
 
 Sigo el tutorial que se ha proporcionado https://www.youtube.com/watch?v=Jd0JImHj3fk
 
@@ -287,33 +287,33 @@ Me identifico como
 
 Nos vamos a "Market"
 
-![cap12](/img/c12.png)
+![cap12](/escenario1/img/c12.png)
 
 Busco "LDAP Integration"
 
-![cap13](/img/c13.png)
+![cap13](/escenario1/img/c13.png)
 
 Lo instalamos
 
-![cap14](/img/c14.png)
+![cap14](/escenario1/img/c14.png)
 
 Una vez que se ha instalado, nos vamos a la pestaña superior derecha y hacemos click en Perfil -> Ajustes (en mi caso admin -> Ajustes). Podemos observar que hay una nueva entrada llamada "Autentificacion de Usuario"
 
-![cap15](/img/c15.png)
+![cap15](/escenario1/img/c15.png)
 
 Para rellenar los datos en este apartado, he tenido el problema descrito en problema1.
 
 Una vez resuelto, obtengo esto 
-![cap16](/img/c16.png)
+![cap16](/escenario1/img/c16.png)
 
 Quiero que solamente los usuarios del grupo "Editores" (Es decir, cristina e isabel) tengan acceso a ownCloud, para eso hago lo siguiente 
 
-![cap18](/img/c18.png)
+![cap18](/escenario1/img/c18.png)
 
 A continuación compruebo que efectivamente solamente esos usuarios tienen acceso.
 
-![cap19](/img/c19.png)
-![cap20](/img/c20.png)
+![cap19](/escenario1/img/c19.png)
+![cap20](/escenario1/img/c20.png)
 
 Lo compruebo haciendo login desde una ventana de incognito para ver si funciona correctamente. Primero voy a cambiar la contraseña de los usuarios para poder comprobar si puedo iniciar sesion
 
@@ -324,12 +324,12 @@ Lo compruebo haciendo login desde una ventana de incognito para ver si funciona 
 
 Como podemos observar a continuación el usuario "isabel" si tiene acceso, pero "pedro" no lo tiene
 
-![cap21](/img/c21.png)
-![cap22](/img/c22.png)
+![cap21](/escenario1/img/c21.png)
+![cap22](/escenario1/img/c22.png)
 
 Además si desde admin, nos vamos al apartado "Usuarios" (esquina superior derecha), podemos ver los usuarios que tenemos
 
-![cap23](/img/c23.png)
+![cap23](/escenario1/img/c23.png)
 
 ## Problemas encontrados
 Al intentar configurar el servidor LDAP en OwnCloud, aparecía el error "Lost connection to LDAP server".
