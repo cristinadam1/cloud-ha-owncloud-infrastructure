@@ -4,7 +4,7 @@ Este repositorio contiene el diseño y despliegue de una infraestructura de alma
 
 ---
 
-## 📂 Estructura del Proyecto
+## 📂 Estructura 
 
 El repositorio se organiza en tres escenarios evolutivos que representan diferentes necesidades empresariales:
 
