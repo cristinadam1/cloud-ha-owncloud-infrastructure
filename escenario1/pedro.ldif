@@ -1,0 +1,13 @@
+dn: uid=pedro,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+cn: Pedro G.
+sn: Gómez
+uid: pedro
+uidNumber: 1003
+gidNumber: 2002
+homeDirectory: /home/pedro
+loginShell: /bin/bash
+gecos: Pedro Gomez
+userPassword: {CRYPT}x

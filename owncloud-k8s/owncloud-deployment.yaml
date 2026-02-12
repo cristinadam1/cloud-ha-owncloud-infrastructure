@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owncloud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: owncloud
+  template:
+    metadata:
+      labels:
+        app: owncloud
+    spec:
+      containers:
+      - name: owncloud
+        image: owncloud:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: OWNCLOUD_DOMAIN
+          value: owncloud.local
+        - name: OWNCLOUD_DB_TYPE
+          value: mysql
+        - name: OWNCLOUD_DB_NAME
+          value: owncloud
+        - name: OWNCLOUD_DB_USER
+          value: owncloud
+        - name: OWNCLOUD_DB_PASSWORD
+          value: owncloudpass
+        - name: OWNCLOUD_DB_HOST
+          value: mariadb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: owncloud
+spec:
+  selector:
+    app: owncloud
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+  type: NodePort

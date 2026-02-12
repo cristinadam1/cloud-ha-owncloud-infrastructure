@@ -1,0 +1,5 @@
+# Ignorar datos persistentes de bases de datos
+**/MariaDB_data/*
+**/data/slapd/database/*
+**/data/slapd/config/*
+.DS_Store

@@ -1,0 +1,118 @@
+networks:
+  owncloud_network:
+    driver: bridge
+
+volumes:
+  owncloud_data:
+  mariadb_data:
+  ldap_data:
+  ldap_config:
+
+services:
+  # Balanceador de carga HAProxy
+  haproxy:
+    image: haproxytech/haproxy-alpine:2.4
+    container_name: haproxy
+    networks:
+      - owncloud_network
+    ports:
+      - "80:80"
+      - "443:443"
+      - "1936:1936"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - owncloud1
+      - owncloud2
+
+  # Servidores OwnCloud replicados
+  owncloud1:
+    image: owncloud:latest
+    container_name: owncloud1
+    networks:
+      - owncloud_network
+    expose:
+      - "80"
+    depends_on:
+      - mariadb_main
+      - redis_cache
+    environment:
+      - OWNCLOUD_DOMAIN=localhost
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USER=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloudpass
+      - OWNCLOUD_DB_HOST=mariadb
+    volumes:
+      - owncloud_data:/var/www/html
+
+  owncloud2:
+    image: owncloud:latest
+    container_name: owncloud2
+    networks:
+      - owncloud_network
+    expose:
+      - "80"
+    depends_on:
+      - mariadb_main
+      - redis_cache
+    environment:
+      - OWNCLOUD_DOMAIN=localhost
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USER=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloudpass
+      - OWNCLOUD_DB_HOST=mariadb
+    volumes:
+      - owncloud_data:/var/www/html
+
+  # Base de datos MariaDB con replicación
+  mariadb_main:
+    image: mariadb:latest
+    container_name: mariadb_main
+    networks:
+      - owncloud_network
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    environment:
+      - MARIADB_DATABASE=owncloud
+      - MARIADB_USER=owncloud
+      - MARIADB_PASSWORD=owncloudpass
+      - MARIADB_ROOT_PASSWORD=rootpass
+
+  mariadb_replica:
+    image: mariadb:latest
+    container_name: mariadb_replica
+    networks:
+      - owncloud_network
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    environment:
+      - MARIADB_REPLICATION_MODE=slave
+      - MARIADB_REPLICATION_USER=replica
+      - MARIADB_REPLICATION_PASSWORD=replicapass
+      - MARIADB_MASTER_HOST=mariadb
+
+  # Redis para mejorar rendimiento
+  redis_cache:
+    image: redis:latest
+    container_name: redis_cache
+    networks:
+      - owncloud_network
+  
+  openldap2:
+    image: osixia/openldap:1.5.0
+    container_name: openldap2
+    networks:
+      - owncloud_network
+    environment:
+      LDAP_ORGANISATION: "AcmeTech"
+      LDAP_DOMAIN: "acmetech.local"
+      LDAP_ADMIN_PASSWORD: "StrongAdminPass123"
+    ports:
+      - "20665:389"
+      - "20666:636"
+    volumes:
+      - ldap_data:/var/lib/ldap
+      - ldap_config:/etc/ldap/slapd.d
+

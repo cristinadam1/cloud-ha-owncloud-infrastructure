@@ -1,0 +1,6 @@
+dn: ou=People,dc=example,dc=org
+ou: People
+objectClass: top
+objectClass: organizationalUnit
+description: Parent object of all PEOPLE accounts
+    

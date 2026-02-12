@@ -1,0 +1,120 @@
+# Usuario: pedro
+dn: uid=pedro,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: pedro
+cn: Pedro Perez
+sn: Perez
+uidNumber: 1001
+gidNumber: 3001
+homeDirectory: /home/pedro
+loginShell: /bin/bash
+userPassword: pedropass
+mail: pedro@acmetech.local
+
+# Usuario: ana
+dn: uid=ana,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: ana
+cn: Ana Gomez
+sn: Gomez
+uidNumber: 1002
+gidNumber: 3002
+homeDirectory: /home/ana
+loginShell: /bin/bash
+userPassword: anapass
+mail: ana@acmetech.local
+
+# Usuario: juan
+dn: uid=juan,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: juan
+cn: Juan Ramirez
+sn: Ramirez
+uidNumber: 1003
+gidNumber: 3001
+homeDirectory: /home/juan
+loginShell: /bin/bash
+userPassword: juanpass
+mail: juan@acmetech.local
+
+# Usuario: maria
+dn: uid=maria,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: maria
+cn: Maria Lopez
+sn: Lopez
+uidNumber: 1004
+gidNumber: 3002
+homeDirectory: /home/maria
+loginShell: /bin/bash
+userPassword: mariapass
+mail: maria@acmetech.local
+
+# Usuario: admin1
+dn: uid=admin1,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: admin1
+cn: Admin Uno
+sn: Uno
+uidNumber: 1005
+gidNumber: 3008
+homeDirectory: /home/admin1
+loginShell: /bin/bash
+userPassword: admin1pass
+mail: admin1@acmetech.local
+
+# Usuario: admin2
+dn: uid=admin2,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: admin2
+cn: Admin Dos
+sn: Dos
+uidNumber: 1006
+gidNumber: 3008
+homeDirectory: /home/admin2
+loginShell: /bin/bash
+userPassword: admin2pass
+mail: admin2@acmetech.local
+
+# Usuario: carlos
+dn: uid=carlos,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: carlos
+cn: Carlos Sanchez
+sn: Sanchez
+uidNumber: 1007
+gidNumber: 3007
+homeDirectory: /home/carlos
+loginShell: /bin/bash
+userPassword: carlospass
+mail: carlos@acmetech.local
+
+# Usuario: sofia
+dn: uid=sofia,ou=users,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+uid: sofia
+cn: Sofia Torres
+sn: Torres
+uidNumber: 1008
+gidNumber: 3007
+homeDirectory: /home/sofia
+loginShell: /bin/bash
+userPassword: sofiapass
+mail: sofia@acmetech.local
+

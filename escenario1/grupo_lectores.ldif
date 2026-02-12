@@ -1,0 +1,7 @@
+dn: cn=Lectores,ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: posixGroup
+cn: Lectores
+gidNumber: 2002
+memberUid: pedro
+memberUid: ana

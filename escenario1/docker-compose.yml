@@ -1,0 +1,15 @@
+services:
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: openldap-server
+    environment:
+      LDAP_ORGANISATION: "EXAMPLE S.A"
+      LDAP_DOMAIN: "example.org"
+      LDAP_ADMIN_PASSWORD: "admin"
+    ports:
+      - "20660:389"
+      - "20661:636"
+    volumes:
+      - ./data/slapd/database:/var/lib/ldap
+      - ./data/slapd/config:/etc/ldap/slapd.d
+

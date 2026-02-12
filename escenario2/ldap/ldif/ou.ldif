@@ -1,0 +1,9 @@
+dn: ou=groups,dc=acmetech,dc=local
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=users,dc=acmetech,dc=local
+objectClass: organizationalUnit
+ou: users
+
+

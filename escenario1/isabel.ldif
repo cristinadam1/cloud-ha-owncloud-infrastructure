@@ -1,0 +1,14 @@
+dn: uid=isabel,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+cn: Isabel Sánchez
+sn: Sánchez
+uid: isabel
+uidNumber: 1002
+gidNumber: 2001
+homeDirectory: /home/isabel
+loginShell: /bin/bash
+gecos: Isabel Sanchez
+userPassword: {CRYPT}x
+

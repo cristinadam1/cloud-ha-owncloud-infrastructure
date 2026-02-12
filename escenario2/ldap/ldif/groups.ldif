@@ -1,0 +1,63 @@
+dn: cn=IT,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: IT
+gidNumber: 3001
+memberUid: pedro
+memberUid: juan
+
+dn: cn=Marketing,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Marketing
+gidNumber: 3002
+memberUid: ana
+memberUid: maria
+
+dn: cn=Ventas,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Ventas
+gidNumber: 3003
+memberUid: maria
+memberUid: juan
+
+dn: cn=Soporte,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Soporte
+gidNumber: 3004
+memberUid: pedro
+memberUid: sofia
+
+dn: cn=RecursosHumanos,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: RecursosHumanos
+gidNumber: 3005
+memberUid: ana
+memberUid: admin1
+
+dn: cn=Finanzas,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Finanzas
+gidNumber: 3006
+memberUid: carlos
+memberUid: admin2
+
+dn: cn=Desarrollo,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Desarrollo
+gidNumber: 3007
+memberUid: carlos
+memberUid: sofia
+
+dn: cn=Administradores,ou=groups,dc=acmetech,dc=local
+objectClass: top
+objectClass: posixGroup
+cn: Administradores
+gidNumber: 3008
+memberUid: admin1
+memberUid: admin2

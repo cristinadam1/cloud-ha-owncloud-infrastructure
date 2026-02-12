@@ -1,0 +1,7 @@
+dn: cn=Editores,ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: posixGroup
+cn: Editores
+gidNumber: 2001
+memberUid: isabel
+memberUid: cristina

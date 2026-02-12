@@ -1,0 +1,13 @@
+dn: uid=ana,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: inetOrgPerson
+cn: Ana L.
+sn: López
+uid: ana
+uidNumber: 1004
+gidNumber: 2002
+homeDirectory: /home/ana
+loginShell: /bin/bash
+gecos: Ana Lopez
+userPassword: {CRYPT}x

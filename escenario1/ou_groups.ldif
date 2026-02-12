@@ -1,0 +1,5 @@
+dn: ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+description: Unidad organizativa para grupos de usuarios
